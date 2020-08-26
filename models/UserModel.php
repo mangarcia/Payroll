@@ -109,7 +109,7 @@ class UserModel extends Database
        $pwd_hashed = $user['data']['SystemUserPassword'];
     }
     
-    echo password_verify($pwd_peppered, $pwd_hashed);
+    
     return password_verify($pwd_peppered, $pwd_hashed);
   }
 

@@ -1,0 +1,183 @@
+﻿
+<main class="default-transition">
+
+	<div class="container-fluid disable-text-selection">
+
+        <div class="row">
+            <div class="col-xs-9 col-md-10">
+                <h1>Planes</h1>
+
+                <!-- <div class="top-right-button-container">
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            EXPORT
+                        </button>
+                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 43px, 0px);">
+                            <a class="dropdown-item" id="dataTablesCopy" href="#">Copy</a>
+                            <a class="dropdown-item" id="dataTablesExcel" href="#">Excel</a>
+                            <a class="dropdown-item" id="dataTablesCsv" href="#">Csv</a>
+                            <a class="dropdown-item" id="dataTablesPdf" href="#">Pdf</a>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <div class="mb-2">
+                    <a class="btn pt-0 pl-0 d-inline-block d-md-none" data-toggle="collapse" href="#displayOptions" role="button" 
+                    aria-expanded="true" aria-controls="displayOptions">
+                        Display Options
+                        <i class="simple-icon-arrow-down align-middle"></i>
+                    </a>
+                    <div class="collapse dont-collapse-sm" id="displayOptions">
+                        <div class="d-block d-md-inline-block">
+                            <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+                                <input class="form-control" placeholder="Buscar Plan" type="search" id="searchDatatable">
+                            </div>
+                        </div>
+                        <div class="float-md-right dropdown-as-select" id="pageLengthPlansTable">
+                            <span class="text-muted text-small">Cantidad de items por página: </span>
+                            <button class="btn btn-outline-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="false">
+                                10
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">5</a>
+                                <a class="dropdown-item active" href="#">10</a>
+                                <a class="dropdown-item" href="#">20</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-md-2 d-flex justify-content-end" style="align-items: center;">
+                <div class="shadow-sm border p-2 rounded-lg text-center mr-0" style="width: max-content;">
+                    <a href="" class="create-plan-link">
+                        <h2 class="m-0 p-0 w-100"><i class="iconsminds-add"></i></h2>
+                        Crear Plan
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="separator mb-3"></div>
+        <div id="plan-list-container">
+
+            <div class="card mt-5">
+                <div class="card-body">
+                    <div class="jumbotron">
+                        <h1 class="display-4">No se encontraron registros</h1>
+
+                        <div>
+                            <p class="lead float-left mt-3">Puedes empezar a crear planes haciendo click en el ícono </p>
+                            <a href="" class="text-center float-right float-lg-left ml-4 p-2 shadow-sm border 
+                                rounded-lg create-plan-link">
+                                <h2 class="m-0 p-0 w-100"><i class="iconsminds-add"></i></h2>
+                                Crear Plan
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+	</div>
+
+</main>
+
+<div class="modal fade" id="create-plan-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="create-plan-form" novalidate="novalidate">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="create-plan-modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <label class="has-float-label mb-3">
+                        <input class="form-control" placeholder="Nombre del plan" name="PlanName" required/>
+                        <span>Nombre</span>
+                    </label>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="has-float-label mb-3">
+                                <input class="form-control" placeholder="Precio día hábil" name="WorkDayPrice" required/>
+                                <span>Precio día hábil</span>
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="has-float-label mb-3">
+                                <input class="form-control" placeholder="Precio festivo" name="HolidayPrice" required/>
+                                <span>Precio festivo</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-select-required mb-3 has-float-label">
+                                <select class="form-control" name="idPlanDays">
+                                    <option value="0">Seleccionar</option>
+                                    <?php
+                                        foreach($this->_layoutParams["Cardinality"] as $key=>$cardinality)
+                                        { echo "<option value='{$cardinality["idPlanDays"]}'>{$cardinality['Cardinality']}</option>"; }
+                                    ?>
+                                </select>
+                                <span>Cardinalidad</span>
+                                <label class="invalid-label text-danger m-0 d-none">Este campo es requerido</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="has-float-label mb-3">
+                                <input class="form-control" name="NumberOfDays" placeholder="Cardinalidad" required/>
+                                <span>Días</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-select-required mb-3 has-float-label">
+                                <select class="form-control" name="PacientsAmmount">
+                                    <option value="0">Seleccionar</option>
+                                    <option value="1">Uno</option>
+                                    <option value="2">Dos</option>
+                                </select>
+                                <span>Pacientes</span>
+                                <label class="invalid-label text-danger m-0 d-none">Este campo es requerido</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="has-float-label">
+                                <select class="form-control" id="plan-cities-select">
+                                    <option value="0">Seleccionar</option>
+                                    <?php
+                                        foreach($this->_layoutParams["Companies"]["Cities"] as $key=>$company)
+                                        { echo "<option value='{$company["idCity"]}'>{$company['CityName']}</option>"; }
+                                    ?>
+                                </select>
+                                <span>Ciudades</span>
+                                <label class="invalid-label text-danger m-0 d-none">Este campo es requerido</label>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <label class="has-float-label mb-3">
+                        <input class="form-control" data-role="tagsinput sometext" name="cities" id="plan-cities-tags-input" required/>
+                        <span>Ciudades seleccionadas</span>
+                    </label>
+                    
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="idPlan"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="create-plan-modal-button">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

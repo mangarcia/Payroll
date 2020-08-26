@@ -1,0 +1,58 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+Options -Indexes
+
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php7_module>
+   php_flag display_errors On
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 128M
+   php_value post_max_size 32M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "C:\xampp\tmp"
+   php_value upload_max_filesize 16M
+   php_flag zlib.output_compression Off
+</IfModule>
+<IfModule lsapi_module>
+   php_flag display_errors On
+   php_value max_execution_time 30
+   php_value max_input_time 60
+   php_value max_input_vars 1000
+   php_value memory_limit 128M
+   php_value post_max_size 32M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "C:\xampp\tmp"
+   php_value upload_max_filesize 16M
+   php_flag zlib.output_compression Off
+</IfModule>
+
+<IfModule mod_headers.c> 
+Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type" 
+Header add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS" 
+</IfModule>
+
+# END cPanel-generated php ini directives, do not edit
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 66.249.64.18
+deny from 46.229.168.139
+deny from 216.244.66.199
+deny from 66.249.64.19

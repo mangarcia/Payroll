@@ -1,0 +1,425 @@
+﻿
+
+<input type="hidden" value="<?php echo $_SESSION['RoleId'] ?>" class="RoleId">
+
+
+<main class="default-transition">
+
+    <div class="container-fluid disable-text-selection">
+        
+        <div class="row">
+            <div class="col-xs-9 col-md-10">
+                <h1>Asistentes</h1>
+
+                <!-- <div class="top-right-button-container">
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            EXPORT
+                        </button>
+                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 43px, 0px);">
+                            <a class="dropdown-item" id="dataTablesCopy" href="#">Copy</a>
+                            <a class="dropdown-item" id="dataTablesExcel" href="#">Excel</a>
+                            <a class="dropdown-item" id="dataTablesCsv" href="#">Csv</a>
+                            <a class="dropdown-item" id="dataTablesPdf" href="#">Pdf</a>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <div class="mb-2">
+                    <a class="btn pt-0 pl-0 d-inline-block d-md-none" data-toggle="collapse" href="#displayOptions" role="button" 
+                    aria-expanded="true" aria-controls="displayOptions">
+                        Display Options
+                        <i class="simple-icon-arrow-down align-middle"></i>
+                    </a>
+                    <div class="collapse dont-collapse-sm" id="displayOptions">
+                        <div class="d-block d-md-inline-block">
+                            <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+                                <input class="form-control" placeholder="Buscar Asistente" id="searchAssistantInput">
+                            </div>
+                        </div>
+                        <!-- <div class="float-md-right dropdown-as-select" id="pageCountDatatable">
+                            <span class="text-muted text-small">Displaying 1-10 of 40 items</span>
+                            <button class="btn btn-outline-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="false">
+                                10
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">5</a>
+                                <a class="dropdown-item active" href="#">10</a>
+                                <a class="dropdown-item" href="#">20</a>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 col-md-2 d-flex justify-content-end" style="align-items: center;">
+                <div class="shadow-sm border p-2 rounded-lg text-center mr-0" style="width: max-content;">
+                    <a href="" class="create-assistant-link">
+                        <h2 class="m-0 p-0 w-100"><i class="iconsminds-add-user"></i></h2>
+                        Crear Asistente
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="separator mb-5"></div>
+        <div id="assistants-list-container" class="list">
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="jumbotron">
+                        <h1 class="display-4">No se encontraron registros</h1>
+
+                        <div>
+                            <p class="lead float-left mt-3">Puedes empezar a crear asistentes haciendo click en el ícono </p>
+                            <a href="" class="text-center float-right float-lg-left ml-4 p-2 shadow-sm border 
+                                rounded-lg create-assistant-link">
+                                <h2 class="m-0 p-0 w-100"><i class="iconsminds-add-user"></i></h2>
+                                Crear Asistente
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<div class="modal fade" id="create-assistant-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="create-assistant-form" novalidate="novalidate">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="create-assistant-modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <h2>Información Personal</h2>
+                    <div class="separator mb-4"></div>
+
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+
+                            <div class="mx-auto mb-3" style="height: 220px; width: 220px;">
+                                <div class="card h-100 overflow-hidden">
+                                    <div class="position-relative h-100">
+                                        <img class="card-img-top" id="create-assistant-img" src="/public/img/user_placeholder.png" alt="Assistant Img">
+                                        <label class="badge badge-pill badge-theme-1 position-absolute badge-top-left" 
+                                            title="Cargar Imagen" for="create-assistant-img-file">
+                                            CARGAR IMAGEN
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="file" class="sr-only" id="create-assistant-img-file" accept="image/x-png,image/gif,image/jpeg">
+                                
+                        </div>
+                            
+                        <div class="col-md-6">
+
+                            <label class="mb-3 mt-2 w-100 has-float-label">
+                                <input type="text" class="form-control" name="basicDataFirstName" required placeholder="Ingresar nombre" />
+                                <span>Nombres</span>
+                            </label>
+
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="basicDataLastName" required placeholder="Ingresar apellido" />
+                                <span>Apellidos</span>
+                            </label>
+
+                            <div class="form-select-required mb-3 has-float-label">
+                                <select class="form-control" name="DocType_DocTypeId">
+                                    <option value="0">Seleccionar</option>
+                                    <?php
+                                        foreach($this->_layoutParams["DocType"] as $key=>$type)
+                                        { echo "<option value='{$type["docTypeId"]}'>{$type['name']}</option>"; }
+                                    ?>
+                                </select>
+                                <span>Tipo documento</span>
+                                <label class="invalid-label text-danger m-0 d-none">Este campo es requerido</label>
+                            </div>
+                            
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="basicDataDocNumber" required placeholder="Ingresar documento" />
+                                <span>Número documento</span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="email" class="form-control" name="personalDataEmailAddress" required placeholder="Ingresar email" />
+                                <span>E-mail</span>
+                            </label>
+
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="tel" class="form-control" name="personalDataTelephone" required placeholder="Ingresar teléfono" />
+                                <span>Teléfono</span>
+                            </label>
+
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="tel" class="form-control" name="personalDataCellphone" placeholder="Ingresar celular" />
+                                <span>Celular</span>
+                            </label>
+
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="personalDataAddress" required placeholder="Ingresar dirección" />
+                                <span>Dirección</span>
+                            </label>
+
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="personalDataAddressComplement" placeholder="Complemento" />
+                                <span>Complemento dirección</span>
+                            </label>
+
+                        </div>
+                            
+                        <div class="col-md-6">
+
+                            <div class="form-select-required mb-3 has-float-label">
+                                <select class="form-control" name="Sex_sexId">
+                                    <option value="0">Seleccionar</option>
+                                    <?php
+                                        foreach($this->_layoutParams["Sex"] as $key=>$sex)
+                                        { echo "<option value='{$sex["sexId"]}'>{$sex['name']}</option>"; }
+                                    ?>
+                                </select>
+                                <span>Género</span>
+                                <label class="invalid-label text-danger m-0 d-none">Este campo es requerido</label>
+                            </div>
+
+                            <div class="input-group date mb-3" data-date-format="yyyy-mm-dd">
+                                <label class="has-float-label">
+                                    <input type="text" class="form-control" placeholder="Fecha de nacimiento" required name="basicDataBirthDate">
+                                    <span>Fecha Nacimiento</span>
+                                </label>
+                                <span class="input-group-text input-group-append input-group-addon" style="height: 38.4px;">
+                                    <i class="simple-icon-calendar"></i>
+                                </span>
+                            </div>
+
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="basicDataBirthPlaceCity" required placeholder="Lugar nacimiento"/>
+                                <span>Lugar de nacimiento</span>
+                            </label>
+
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="personalDataAddressCity" required placeholder="Ciudad alojamiento"/>
+                                <span>Ciudad de alojamiento</span>
+                            </label>
+
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="personalDataAddressLocality" required 
+                                placeholder="Barrio o localidad" />
+                                <span>Barrio o localidad</span>
+                            </label>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label class="has-float-label">
+                                <input type="text" class="form-control" name="socialBenefitsARL" required placeholder="Ingresar ARL"/>
+                                <span>ARL</span>
+                            </label>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label class="has-float-label">
+                                <input type="text" class="form-control" name="socialBenefitsHealth" required placeholder="Ingresar EPS"/>
+                                <span>EPS</span>
+                            </label>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label class="has-float-label">
+                                <input type="text" class="form-control" name="socialBenefitsPension" required placeholder="Ingresar pensión"/>
+                                <span>Pensión</span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <h2 class="mt-4">Información Profesional</h2>
+                    <div class="separator mb-4"></div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="form-select-required mb-3 has-float-label">
+                                <select class="form-control" name="educationAcademicLevel">
+                                    <option value="0">Seleccionar</option>
+                                    <?php
+                                        foreach($this->_layoutParams["AcademicLevel"] as $key=>$academicLevel)
+                                        { echo "<option value='{$academicLevel["academicLevelId"]}'>{$academicLevel['name']}</option>"; }
+                                    ?>
+                                </select>
+                                <span>Nivel académico</span>
+                                <label class="invalid-label text-danger m-0 d-none">Este campo es requerido</label>
+                            </div>
+
+                            <label class="has-float-label">
+                                <input class="form-control mb-3" placeholder="Título profesional" name="professionalJobTitle"/>
+                                <span>Título profesional</span>
+                            </label>
+
+                            <label class="has-float-label">
+                                <input class="form-control mb-3" placeholder="Aspiracion salarial" name="professionalSalaryAspiration"/>
+                                <span>Aspiración salarial</span>
+                            </label>
+
+                            <div class="input-group date mb-3" data-date-format="yyyy-mm-dd">
+                                <label class="has-float-label">
+                                    <input type="text" class="form-control" placeholder="Fecha de ingreso" required name="companyBeginDate">
+                                    <span>Fecha de ingreso</span>
+                                </label>
+                                <span class="input-group-text input-group-append input-group-addon" style="height: 38.4px;">
+                                    <i class="simple-icon-calendar"></i>
+                                </span>
+                            </div>
+
+                            <div class="form-select-required mb-3 has-float-label">
+                                <select class="form-control" name="defaultWorkTime">
+                                    <option value="">Seleccionar</option>
+                                    <option value="Morning">Día</option>
+                                    <option value="Evening">Noche</option>
+                                </select>
+                                <span>Turno por defecto</span>
+                                <label class="invalid-label text-danger m-0 d-none">Este campo es requerido</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="pagoQuincenalAsistente" name="paymentFifteen">
+                                <label class="custom-control-label" for="pagoQuincenalAsistente">Pago quincenal</label>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="has-float-label">
+                                <textarea class="form-control mb-3" rows="3" name="professionalResume" placeholder="Resumen profesional"></textarea>
+                                <span>Resumen profesional</span>
+                            </label>
+
+                            <label class="has-float-label">
+                                <textarea class="form-control mb-3" rows="3" name="bossObservation" placeholder="Valoración del jefe"></textarea>
+                                <span>Valoración del Jefe</span>
+                            </label>
+
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" id="curriculum-vitae-input-file" 
+                                accept=".doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                <label class="custom-file-label" for="curriculum-vitae-input-file">Adjuntar HV</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="tecnicaMovilizacionAsistente" name="experienceMovility">
+                                <label class="custom-control-label" for="tecnicaMovilizacionAsistente">Técnica de movilización</label>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                    <h2 class="mt-4">Procedimientos</h2>
+                    <div class="separator mb-4"></div>
+
+                    <div class="row">
+                        
+                        <div class="col-md-4">
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="cateterismoVesicalAsistente" name="experienceCateter">
+                                <label class="custom-control-label" for="cateterismoVesicalAsistente">Cateterismo Vesical</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="traqueotomiaAsistente" name="experienceTraqueo">
+                                <label class="custom-control-label" for="traqueotomiaAsistente">Traqueotomía</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="intraVenososAsistente" name="experienceIntraVain">
+                                <label class="custom-control-label" for="intraVenososAsistente">Medicamentos Intravenosos</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="assistantId"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="create-assistant-modal-button">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="edit-availability-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="edit-availability-form" novalidate="novalidate">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100">Editar disponibilidad <span class="float-right" id="edit-availability-date-title"></span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <h4 id="assistant-availability-name" class="mb-4"></h4>
+                    
+                    <div class="form-select-required mb-4 has-float-label">
+                        <select class="form-control" name="morningStatus">
+                            <option value="">Seleccionar</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Ocupado">Ocupado</option>
+                            <option value="No Labora">No Labora</option>
+                        </select>
+                        <span>Jornada Mañana</span>
+                        <label class="invalid-label text-danger m-0 d-none">Este campo es requerido</label>
+                    </div>
+
+                    <div class="form-select-required has-float-label">
+                        <select class="form-control" name="eveningStatus">
+                            <option value="">Seleccionar</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Ocupado">Ocupado</option>
+                            <option value="No Labora">No Labora</option>
+                        </select>
+                        <span>Jornada Tarde</span>
+                        <label class="invalid-label text-danger m-0 d-none">Este campo es requerido</label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="assistantId"/>
+                    <input type="hidden" name="AvailabilityDate"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="edit-availability-modal-button">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
