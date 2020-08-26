@@ -1,0 +1,182 @@
+﻿<input type="hidden" value="<?php echo $_SESSION['RoleId'] ?>" class="RoleId">
+
+
+<main class="default-transition">
+
+    <div class="container-fluid disable-text-selection">
+
+        <div class="row">
+            <div class="col-xs-9 col-md-10">
+                <h1>Users</h1>
+
+                <div class="mb-2">
+                    <a class="btn pt-0 pl-0 d-inline-block d-md-none" data-toggle="collapse" href="#displayOptions" role="button" aria-expanded="true" aria-controls="displayOptions">
+                        Display Options
+                        <i class="simple-icon-arrow-down align-middle"></i>
+                    </a>
+                    <div class="collapse dont-collapse-sm" id="displayOptions">
+                        <div class="d-block d-md-inline-block">
+                            <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+                                <input class="form-control" placeholder="Search User" type="search" id="searchUserInput">
+                            </div>
+                        </div>
+                        <div class="float-md-right dropdown-as-select" id="pageLengthPlansTable">
+                            <span class="text-muted text-small">Quantity of items per page: </span>
+                            <button class="btn btn-outline-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                10
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">5</a>
+                                <a class="dropdown-item active" href="#">10</a>
+                                <a class="dropdown-item" href="#">20</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3 col-md-2 d-flex justify-content-end" style="align-items: center;">
+                <div class="shadow-sm border p-2 rounded-lg text-center mr-0" style="width: max-content;">
+                    <a href="" class="create-user-link">
+                        <h2 class="m-0 p-0 w-100"><i class="iconsminds-add-user"></i></h2>
+
+                        create user
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="separator mb-5"></div>
+        <div id="users-list-container">
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="jumbotron">
+                        <h1 class="display-4">No records found
+                        </h1>
+
+                        <div>
+                            <p class="lead float-left mt-3">You can start creating User by clicking on the icon
+                            </p>
+                            <a href="" class="text-center float-right float-lg-left ml-4 p-2 shadow-sm border 
+                                rounded-lg create-user-link">
+                                <h2 class="m-0 p-0 w-100"><i class="iconsminds-add-user"></i></h2>
+
+                                create user
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<div class="modal fade" id="create-user-modal">
+    <div class="mb-2">
+
+
+        <div class="modal-dialog modal-lg" role="document">
+
+
+
+
+            <div class="modal-content">
+                <form id="create-user-form" novalidate="novalidate">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="create-user-modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+
+
+
+
+                    <div class="modal-body">
+
+                        <h2>User information
+                        </h2>
+                        <div class="separator mb-2"></div>
+
+                        <div class="row">
+
+                        
+
+                            <div class="col">
+
+                                <input type="text" class="form-control" name="idSystemUser" required placeholder="Ingresar apellido" style="display: none;" />
+
+                                <label class="mb-3 w-100 has-float-label">
+                                    <select class="form-control select2-single" name="UserRol_idUserRol" id="UserRol_idUserRol" data-width="100%">
+
+                                    </select>
+                                    <span>Rol</span>
+                                </label>
+
+
+                                <label class="mb-3 w-100 has-float-label">
+                                    <select class="form-control select2-single" name="SystemUserStatus_idSystemUserStatus" id="SystemUserStatus_idSystemUserStatus" data-width="100%">
+                                        <option value="null" label="&nbsp;">&nbsp;</option>
+
+                                    </select>
+                                    <span>Status</span>
+                                </label>
+                            </div>
+
+
+                        </div>
+                        <input type="text" class="form-control" name="idSystemUser" required  style="display: none;" />
+
+                    
+                        <div class="row">
+
+
+                            <div class="col">
+                                <label class="mb-3 w-100 has-float-label">
+                                    <input type="text" class="form-control" name="SystemUserNickName" required  />
+                                    <span>Nick Name</span>
+                                </label>
+
+
+                                <label class="mb-3 w-100 has-float-label">
+                                    <input type="text" class="form-control" name="SystemUserName" required  />
+                                    <span>User full name</span>
+                                </label>
+                                <label class="mb-3 w-100 has-float-label">
+                                    <input type="pasword" class="form-control" name="SystemUserPassword" id="SystemUserPassword"  placeholder="Ingresar Username" />
+                                    <span>Password</span>
+                                </label>
+                                <label class="mb-3 w-100 has-float-label">
+                                    <input type="email" class="form-control" name="SystemUserEmail" required />
+                                    <span>Email</span>
+                                </label>
+
+                                <label class="mb-3 w-100 has-float-label">
+                                    <input type="number" class="form-control" name="SystemUserPhone"  />
+                                    <span>Phone Number</span>
+                                </label>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="col" style="text-align:right; width:100%; padding:15;">
+
+                            <button type="submit" class="btn btn-info default mb-1" id="create-user-modal-button" style="text-align:right">Guardar</button>
+                        </div>
+                    </div>
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,214 @@
+﻿
+<input type="hidden" value="<?php echo $_SESSION['RoleId'] ?>" class="RoleId">
+
+
+<main class="default-transition"> 
+
+    <div class="container-fluid disable-text-selection">
+
+        <div class="row">
+            <div class="col-xs-9 col-md-10">
+                <h1>Employee</h1>
+
+                <!-- <div class="top-right-button-container">
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            EXPORT
+                        </button>
+                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 43px, 0px);">
+                            <a class="dropdown-item" id="dataTablesCopy" href="#">Copy</a>
+                            <a class="dropdown-item" id="dataTablesExcel" href="#">Excel</a>
+                            <a class="dropdown-item" id="dataTablesCsv" href="#">Csv</a>
+                            <a class="dropdown-item" id="dataTablesPdf" href="#">Pdf</a>
+                        </div>
+                    </div>
+                </div> -->
+            
+             <div class="mb-2">
+                    <a class="btn pt-0 pl-0 d-inline-block d-md-none" data-toggle="collapse" href="#displayOptions" role="button" 
+                    aria-expanded="true" aria-controls="displayOptions">
+                        Display Options
+                        <i class="simple-icon-arrow-down align-middle"></i>
+                    </a>
+                    <div class="collapse dont-collapse-sm" id="displayOptions">
+                        <div class="d-block d-md-inline-block">
+                            <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+                                <input class="form-control" placeholder="Search Employee" type="search" id="searchUserInput">
+                            </div>
+                        </div>
+                        <div class="float-md-right dropdown-as-select" id="pageLengthPlansTable">
+                            <span class="text-muted text-small">Employee Qty per page </span>
+                            <button class="btn btn-outline-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="false">
+                                10
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">5</a>
+                                <a class="dropdown-item active" href="#">10</a>
+                                <a class="dropdown-item" href="#">20</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-3 col-md-2 d-flex justify-content-end" style="align-items: center;">
+                <div class="shadow-sm border p-2 rounded-lg text-center mr-0" style="width: max-content;">
+                    <a href="" class="create-user-link">
+                        <h2 class="m-0 p-0 w-100"><i class="iconsminds-add-user"></i></h2>
+                        create Employee
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="separator mb-5"></div>
+        <div id="users-list-container">
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="jumbotron">
+                        <h1 class="display-4">No employees have been created</h1>
+
+                        <div>
+                            <p class="lead float-left mt-3">Click on "Create Employee" to add a new company </p>
+                            <a href="" class="text-center float-right float-lg-left ml-4 p-2 shadow-sm border 
+                                rounded-lg create-user-link">
+                                <h2 class="m-0 p-0 w-100"><i class="iconsminds-add-user"></i></h2>
+                                Create employee
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+                             
+    </div>
+
+</main>
+
+
+<div class="modal fade" id="create-user-modal" >
+<div class="mb-2">
+            
+
+    <div class="modal-dialog modal-lg" role="document">
+
+
+
+    
+       	 <div class="modal-content">
+            <form id="create-user-form" novalidate="novalidate">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="create-user-modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+
+               
+
+
+
+                <div class="modal-body">
+                    
+                    <h2>Employee Information</h2>
+                    <div class="separator mb-2"></div>
+
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+
+                            <div class="mx-auto mb-3" style="height: 150px; width: 150px;">
+                                <div class="card h-100 overflow-hidden">
+                                    <div class="position-relative h-100">
+                                        <img class="card-img-top" id="create-user-img" src="/public/img/user_placeholder.png" 
+                                            alt="User Img">
+                                     <!--   <label class="badge badge-pill badge-theme-1 position-absolute badge-top-left" 
+                                            title="Cargar Imagen" for="create-user-img-file">
+                                            CARGAR IMAGEN
+                                        </label>-->
+                                    </div>
+                                </div>
+                            </div>
+
+                          <sapn type="file" class="sr-only" id="create-user-img-file" accept="image/x-png,image/gif,image/jpeg">
+                           
+                        </div>
+                            
+                        <div class="col-md-6">
+
+                          <input type="text" class="form-control" name="idEmployee" required  style="display: none;" />  
+
+
+                              
+										
+                                 
+
+									<label class="mb-3 w-100 has-float-label">
+                                    	<select class="form-control select2-single" name="DocumentType_idDocumentType" id="DocumentType_idDocumentType" data-width="100%">
+                                       
+                                    	</select>  
+                                 <span>Document Type</span>
+                                  </label>  
+
+
+                                  <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="EmployeeDocNumber" required  />
+                                <span>	Employee ID Number</span>
+                            </label> 
+                                  				
+                                  <label class="mb-3 w-100 has-float-label">
+                                        <select class="form-control select2-single" name="EmployeeStatus_idEmployeeStatus" id="EmployeeStatus_idEmployeeStatus" data-width="100%">
+                                        <option value="null" label="&nbsp;">&nbsp;</option> 
+
+                                        </select>   
+                                 <span>Status</span>
+                                  </label> 
+                             </div>
+
+                    
+					</div>
+                    <h2 class="mt-2">Contact Information</h2>
+                    <div class="separator mb-2"></div>
+                        <div class="row">
+                        
+                      
+                         <div class="col">
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="EmployeName" required  />
+                                <span>	Employee Name</span>
+                            </label> 
+   
+                            
+                            <label class="mb-3 w-100 has-float-label">
+                                <input type="text" class="form-control" name="EmployeeLastName" required />
+                                <span>Employee Last Name</span>
+                            </label>
+
+                         
+
+                           <label class="mb-3 w-100 has-float-label">
+                                <input type="number" class="form-control" name="EmployeePhoneNumber"  />
+                                <span>Employee Phone Number</span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                 
+
+                        <div class="col" style="text-align:right; width:100%; padding:15;" >
+
+                            <button type="submit" class="btn btn-info default mb-1" id="create-user-modal-button" style="text-align:right">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

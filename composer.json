@@ -1,0 +1,11 @@
+{
+    "require": {
+        "calendarific/php-calendarific": "^2.0",
+        "epayco/epayco-php": "dev-master",
+        "firebase/php-jwt": "^5.0",
+        "fzaninotto/faker": "^1.8",
+        "guzzlehttp/guzzle": "~6.0",
+        "nesbot/carbon": "^2.25",
+        "rakit/validation": "^1.2"
+    }
+}
